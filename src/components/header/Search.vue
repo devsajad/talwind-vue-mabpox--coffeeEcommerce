@@ -29,7 +29,7 @@ watch(searchQuery, () => {
   }
 
   debounceTimer = setTimeout(async () => {
-    if (searchQuery.value.trim().length < 3) {
+    if (searchQuery.value.trim().length === 0) {
       serachResultProducts.value = []
       return
     }
