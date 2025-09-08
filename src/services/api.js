@@ -26,3 +26,19 @@ export async function getProductsWithCategory() {
 
   return data
 }
+
+export async function searchProductsByName(searchTerm, { signal }) {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*, categories(name)')
+    .ilike('name', `%${searchTerm}%`)
+    .abortSignal(signal)
+
+  if (error && error.code !== '20') {
+    console.log(error)
+    console.error('Error searching products:', error.message)
+    throw new Error(error.message)
+  }
+
+  return data
+}

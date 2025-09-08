@@ -18,7 +18,6 @@ const filteredProducts = computed(() => {
   if (!products.value) return null
   if (props.CategoryFilter === 'all') return products.value
 
-  console.log(typeof props.CategoryFilter)
   return products.value.filter((item) => item.category_id === props.CategoryFilter)
 })
 
@@ -27,7 +26,6 @@ onMounted(async () => {
     loading.value = true
 
     const productsApi = await getProductsWithCategory()
-    console.log(productsApi)
     if (productsApi.length === 0) error.value = 'هیچ محصولی پیدا نشد !'
     else products.value = productsApi
   } catch (error) {
