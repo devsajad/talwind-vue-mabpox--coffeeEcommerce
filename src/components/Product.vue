@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <Categories />
-    <ProductItems />
+    <Categories @categoryClick="handleCategoryClick" />
+    <ProductItems :CategoryFilter="CategoryFilter" />
   </div>
 </template>
 
@@ -13,9 +13,7 @@ import ProductItems from './ProductItems.vue'
 
 const CategoryFilter = ref('all')
 
-function setCategoryFilter(id) {
+function handleCategoryClick(id) {
   CategoryFilter.value = id
 }
 </script>
-
-<style lang="scss" scoped></style>

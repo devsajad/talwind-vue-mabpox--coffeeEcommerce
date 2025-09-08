@@ -1,9 +1,54 @@
+<script setup>
+import { getProductsWithCategory } from '@/services/api'
+import { computed, onMounted, ref } from 'vue'
+import PlusIcon from './icons/PlusIcon.vue'
+
+const props = defineProps({
+  CategoryFilter: {
+    type: [Number, String],
+    required: true,
+  },
+})
+
+const products = ref([])
+const error = ref('')
+const loading = ref(false)
+
+const filteredProducts = computed(() => {
+  if (!products.value) return null
+  if (props.CategoryFilter === 'all') return products.value
+
+  console.log(typeof props.CategoryFilter)
+  return products.value.filter((item) => item.category_id === props.CategoryFilter)
+})
+
+onMounted(async () => {
+  try {
+    loading.value = true
+
+    const productsApi = await getProductsWithCategory()
+    console.log(productsApi)
+    if (productsApi.length === 0) error.value = 'هیچ محصولی پیدا نشد !'
+    else products.value = productsApi
+  } catch (error) {
+    console.error(error)
+    error.value = 'مشکلی پیش‌اومده! لطفا دوباره امتحان کن'
+  } finally {
+    loading.value = false
+  }
+})
+</script>
+
 <template>
   <div
-    v-if="products"
+    v-if="filteredProducts"
     class="grid grid-cols-2 gap-4 md:gap-6 px-6 mt-3 md:grid-cols-4 max-w-5xl mx-auto"
   >
-    <div v-for="product in products" :key="product.id" class="bg-white py-3 px-2.5 rounded-2xl">
+    <div
+      v-for="product in filteredProducts"
+      :key="product.id"
+      class="bg-white py-3 px-2.5 rounded-2xl"
+    >
       <div class="rounded-2xl overflow-hidden mb-4">
         <img :src="product.image_url" :alt="product.name + 'coffee image'" class="w-full" />
       </div>
@@ -30,29 +75,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { getProductsWithCategory } from '@/services/api'
-import { onMounted, ref } from 'vue'
-import PlusIcon from './icons/PlusIcon.vue'
-
-const products = ref([])
-const error = ref('')
-const loading = ref(false)
-
-onMounted(async () => {
-  try {
-    loading.value = true
-
-    const productsApi = await getProductsWithCategory()
-    console.log(productsApi)
-    if (productsApi.length === 0) error.value = 'هیچ محصولی پیدا نشد !'
-    else products.value = productsApi
-  } catch (error) {
-    console.error(error)
-    error.value = 'مشکلی پیش‌اومده! لطفا دوباره امتحان کن'
-  } finally {
-    loading.value = false
-  }
-})
-</script>
