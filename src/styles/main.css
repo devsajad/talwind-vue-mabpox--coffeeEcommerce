@@ -49,6 +49,8 @@
   --color-theme-primary-lighter: var(--theme-primary-lighter);
   --color-theme-foreground-light: var(--theme-foreground-light);
   --color-theme-foreground-lighter: var(--theme-foreground-lighter);
+  --color-theme-foreground-list: var(--theme-foreground-list);
+  --color-gray-subtext: var(--them-gray-subtext);
 }
 
 :root {
@@ -57,7 +59,9 @@
   --theme-primary-lighter: #f9f2ed;
   --theme-foreground-light: #313131;
   --theme-foreground-lighter: #e3e3e3;
+  --theme-gray-subtext: #a2a2a2;
 
+  --theme-foreground-list: #ededed;
   --background: #f9f9f9;
   --foreground: #242424;
   --card: oklch(1 0 0);
@@ -135,6 +139,10 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  button,
+  a {
+    @apply cursor-pointer;
   }
 }
 

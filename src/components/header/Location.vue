@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text-[#A2A2A2] text-xs">موقعیت مکانی</p>
+    <p class="text-theme-foreground-list">موقعیت مکانی</p>
     <Select dir="rtl" class="text-[#D8D8D8] outline-none">
       <SelectTrigger class="w-[180px] border-none px-0 justify-start focus-visible:ring-0">
         <SelectValue placeholder="مشهد ، صیادشیرازی" class="text-[#D8D8D8]" />

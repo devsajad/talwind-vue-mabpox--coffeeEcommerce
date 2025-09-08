@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import {
   Combobox,
@@ -36,7 +37,7 @@ const frameworks = [
       </ComboboxAnchor>
 
       <ComboboxList>
-        <ComboboxEmpty> هیچ نیجه‌ای پیدا نشد! </ComboboxEmpty>
+        <ComboboxEmpty class="py-3"> هیچ نیجه‌ای پیدا نشد! </ComboboxEmpty>
 
         <ComboboxGroup>
           <ComboboxItem v-for="framework in frameworks" :key="framework.value" :value="framework">
