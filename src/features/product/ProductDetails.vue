@@ -1,5 +1,6 @@
 <script setup>
 import ProductIcons from '@/components/icons/ProductIcons.vue'
+import Seprator from '@/components/ui/Seprator.vue'
 import { getProductById } from '@/services/api'
 import { ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
@@ -49,8 +50,8 @@ watchEffect(async () => {
           <p class="text-gray-subtext font-light">{{ product.categories.name }}</p>
           <ProductIcons />
         </div>
+        <Seprator width="90%" height="1px" class="my-4" />
       </div>
-
       <!-- Descriptin section -->
       <div>
         <p class="font-bold">توضیحات</p>
