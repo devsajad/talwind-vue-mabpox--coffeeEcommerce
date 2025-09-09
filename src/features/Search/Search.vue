@@ -14,11 +14,14 @@ import { Check } from 'lucide-vue-next'
 import SettingIcon from '@/components/icons/SettingIcon.vue'
 import { ref, watch } from 'vue'
 import { searchProductsByName } from '@/services/api'
+import { useRouter } from 'vue-router'
 
 const searchQuery = ref('')
+const isLoading = ref(false)
 const serachResultProducts = ref([])
 let debounceTimer = null
 let abortController = null
+const router = useRouter()
 
 watch(searchQuery, () => {
   clearTimeout(debounceTimer)
@@ -36,6 +39,7 @@ watch(searchQuery, () => {
     abortController = new AbortController()
 
     try {
+      isLoading.value = true
       const result = await searchProductsByName(searchQuery.value, {
         signal: abortController.signal,
       })
@@ -46,9 +50,15 @@ watch(searchQuery, () => {
         console.error(error)
         serachResultProducts.value = []
       }
+    } finally {
+      isLoading.value = false
     }
   }, 300)
 })
+
+function handleSelectSearch(id) {
+  router.push({ path: `/product/${id}` })
+}
 </script>
 
 <template>
@@ -61,13 +71,17 @@ watch(searchQuery, () => {
       </ComboboxAnchor>
 
       <ComboboxList>
-        <ComboboxEmpty class="py-3"> هیچ نیجه‌ای پیدا نشد! </ComboboxEmpty>
+        <ComboboxEmpty class="py-3">{{
+          isLoading ? 'در حال جستجو ...' : 'هیچ نیجه‌ای پیدا نشد!'
+        }}</ComboboxEmpty>
 
         <ComboboxGroup>
           <ComboboxItem
             v-for="product in serachResultProducts"
+            class="cursor-pointer"
             :key="product.id"
             :value="product.name"
+            @select="() => handleSelectSearch(product.id)"
           >
             {{ product.name }}
 
