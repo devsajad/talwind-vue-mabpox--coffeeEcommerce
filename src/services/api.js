@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+import { supabase } from '@/services/supabase'
 
 export async function getCategories() {
   const { data, error } = await supabase.from('categories').select('*')

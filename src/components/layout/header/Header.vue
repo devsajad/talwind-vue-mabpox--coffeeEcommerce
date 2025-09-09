@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import Location from './Location.vue'
+import Location from '@/features/location/Location.vue'
 import Promo from './Promo.vue'
-import Search from './Search.vue'
+import Search from '@/features/Search/Search.vue'
 </script>
 
 <template>

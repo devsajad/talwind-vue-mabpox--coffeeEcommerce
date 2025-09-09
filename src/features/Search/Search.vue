@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import {
   Combobox,
@@ -12,7 +11,7 @@ import {
 } from '@/components/ui/combobox'
 import { cn } from '@/lib/utils'
 import { Check } from 'lucide-vue-next'
-import SettingIcon from '../icons/SettingIcon.vue'
+import SettingIcon from '@/components/icons/SettingIcon.vue'
 import { ref, watch } from 'vue'
 import { searchProductsByName } from '@/services/api'
 
