@@ -1,9 +1,9 @@
 <script setup>
-import Header from '@/components/layout/header/Header.vue'
+import HeroSection from '@/components/layout/header/HeroSection.vue'
 import ProductsContainer from '@/features/products/ProductsContainer.vue'
 </script>
 
 <template>
-  <Header />
+  <HeroSection />
   <ProductsContainer />
 </template>

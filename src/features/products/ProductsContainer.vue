@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-30 lg:mb-0">
+  <div class="mb-30 lg:mb-40">
     <Categories @categoryClick="handleCategoryClick" />
     <Products :CategoryFilter="CategoryFilter" />
   </div>

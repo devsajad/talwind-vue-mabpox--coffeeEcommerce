@@ -1,14 +1,13 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import Location from '@/features/location/Location.vue'
-import Promo from './Promo.vue'
-import Search from '@/features/Search/Search.vue'
+import HeartIcon from '@/components/icons/HeartIcon.vue';
+import BackButton from '@/components/ui/BackButton.vue';
+
 </script>
 
 <template>
-  <header class="h-70 w-full bg-gradient-header drop-shadow-header p-6 space-y-6">
-    <Location />
-    <Search />
+  <header class="flex justify-between my-6">
+    <BackButton/>
+    <p class="font-bold">جزئیات</p>
+    <HeartIcon />
   </header>
-  <Promo />
 </template>
