@@ -1,13 +1,12 @@
 <script setup>
-import Header from '@/components/layout/header/Header.vue'
-import Navbar from '@/components/layout/Navbar.vue'
-import Product from '@/features/products/Product.vue'
+import Navbar from './components/layout/Navbar.vue'
 </script>
 
 <template>
-  <Header />
-  <Product />
-  <Navbar />
+  <div>
+    <RouterView />
+    <Navbar />
+  </div>
 </template>
 
 <style scoped></style>

@@ -6,9 +6,9 @@ import Search from '@/features/Search/Search.vue'
 </script>
 
 <template>
-  <div class="h-70 w-full bg-gradient-header drop-shadow-header p-6 space-y-6">
+  <header class="h-70 w-full bg-gradient-header drop-shadow-header p-6 space-y-6">
     <Location />
     <Search />
-  </div>
+  </header>
   <Promo />
 </template>
