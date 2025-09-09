@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import Location from '@/features/location/Location.vue'
 import Promo from './Promo.vue'

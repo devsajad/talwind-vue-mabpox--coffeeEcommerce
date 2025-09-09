@@ -27,7 +27,7 @@ function handleFilterClick(filter) {
         : 'text-theme-foreground-light bg-theme-foreground-list',
     ]"
   >
-    <button @click="() => handleFilterClick('all')">همه قهوه‌ها</button>
+    <button class="whitespace-nowrap" @click="() => handleFilterClick('all')">همه قهوه‌ها</button>
   </li>
   <li
     v-for="category in categories"
