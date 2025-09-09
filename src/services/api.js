@@ -42,3 +42,23 @@ export async function searchProductsByName(searchTerm, { signal }) {
 
   return data
 }
+
+/**
+ * Fetches a single product by its ID.
+ * @param {string | number} productId - The ID of the product to fetch.
+ * @returns {Promise<Object>} A promise that resolves to the product object.
+ */
+export async function getProductById(productId) {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*, categories(name)')
+    .eq('id', productId) 
+    .single()
+
+  if (error) {
+    console.error('Error fetching product:', error.message)
+    throw new Error(error.message)
+  }
+
+  return data
+}

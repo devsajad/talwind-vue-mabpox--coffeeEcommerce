@@ -1,9 +1,9 @@
 <script setup>
-import Header from '@/components/layout/header/Header.vue';
-import Product from '@/features/products/Product.vue';
+import Header from '@/components/layout/header/Header.vue'
+import ProductsContainer from '@/features/products/ProductsContainer.vue'
 </script>
 
 <template>
   <Header />
-  <Product />
+  <ProductsContainer />
 </template>

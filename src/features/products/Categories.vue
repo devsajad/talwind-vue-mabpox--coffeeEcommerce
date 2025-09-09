@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import { getCategories } from '@/services/api'
 import { onMounted, ref } from 'vue'
@@ -29,7 +28,7 @@ onMounted(async () => {
 
 <template>
   <ul
-    class="flex w-full overflow-x-scroll overflow-y-hidden md:overflow-x-hidden pt-6 pb-3 px-6 items-center gap-4 md:justify-center"
+    class="flex w-full overflow-x-scroll overflow-y-hidden lg:overflow-x-hidden pt-6 pb-3 px-6 items-center gap-4 lg:justify-center"
   >
     <CategoriesLoading v-if="loading" />
     <CategoriesItems

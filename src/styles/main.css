@@ -50,7 +50,7 @@
   --color-theme-foreground-light: var(--theme-foreground-light);
   --color-theme-foreground-lighter: var(--theme-foreground-lighter);
   --color-theme-foreground-list: var(--theme-foreground-list);
-  --color-gray-subtext: var(--them-gray-subtext);
+  --color-gray-subtext: var(--theme-gray-subtext);
 }
 
 :root {
