@@ -35,7 +35,6 @@ export async function searchProductsByName(searchTerm, { signal }) {
     .abortSignal(signal)
 
   if (error && error.code !== '20') {
-    console.log(error)
     console.error('Error searching products:', error.message)
     throw new Error(error.message)
   }
@@ -52,7 +51,7 @@ export async function getProductById(productId) {
   const { data, error } = await supabase
     .from('products')
     .select('*, categories(name)')
-    .eq('id', productId) 
+    .eq('id', productId)
     .single()
 
   if (error) {

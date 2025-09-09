@@ -1,18 +1,13 @@
 <template>
   <div class="mb-30 lg:mb-40">
-    <Categories @categoryClick="handleCategoryClick" />
-    <Products :CategoryFilter="CategoryFilter" />
+    <Categories/>
+    <Products  />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import Categories from '@/features/products/Categories.vue'
 import Products from '@/features/products/Products.vue'
 
-const CategoryFilter = ref('all')
 
-function handleCategoryClick(id) {
-  CategoryFilter.value = id
-}
 </script>

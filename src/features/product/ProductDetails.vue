@@ -1,4 +1,5 @@
 <script setup>
+import ProductIcons from '@/components/icons/ProductIcons.vue'
 import { getProductById } from '@/services/api'
 import { ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
@@ -21,7 +22,6 @@ watchEffect(async () => {
     if (!productApi) throw new Error('قهوه‌ای که دنبالشی پیدا نشد !')
 
     product.value = productApi
-    console.log(product.value)
   } catch (err) {
     console.error(err)
     error.value = err.message

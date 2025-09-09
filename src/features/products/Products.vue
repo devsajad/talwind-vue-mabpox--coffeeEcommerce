@@ -1,24 +1,20 @@
 <script setup>
+import PlusIcon from '@/components/icons/PlusIcon.vue'
 import { getProductsWithCategory } from '@/services/api'
 import { computed, onMounted, ref } from 'vue'
-import PlusIcon from '@/components/icons/PlusIcon.vue'
-
-const props = defineProps({
-  CategoryFilter: {
-    type: [Number, String],
-    required: true,
-  },
-})
+import { useRoute } from 'vue-router'
 
 const products = ref([])
 const error = ref('')
 const loading = ref(false)
+const route = useRoute()
 
 const filteredProducts = computed(() => {
   if (!products.value) return null
-  if (props.CategoryFilter === 'all') return products.value
 
-  return products.value.filter((item) => item.category_id === props.CategoryFilter)
+  if (route.query.category === 'all' || !route?.query?.category) return products.value
+
+  return products.value.filter((item) => item.category_id === Number(route.query.category))
 })
 
 onMounted(async () => {

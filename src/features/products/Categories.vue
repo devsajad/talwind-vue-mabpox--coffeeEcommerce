@@ -7,7 +7,6 @@ import CategoriesItems from '@/features/products/CategoriesItems.vue'
 const categories = ref([])
 const error = ref(null)
 const loading = ref(false)
-const emit = defineEmits(['categoryClick'])
 
 onMounted(async () => {
   try {
@@ -31,10 +30,6 @@ onMounted(async () => {
     class="flex w-full overflow-x-scroll overflow-y-hidden lg:overflow-x-hidden pt-6 pb-3 px-6 items-center gap-4 lg:justify-center"
   >
     <CategoriesLoading v-if="loading" />
-    <CategoriesItems
-      @categoryClick="emit('categoryClick', $event)"
-      v-else-if="categories"
-      :categories="categories"
-    />
+    <CategoriesItems v-else-if="categories" :categories="categories" />
   </ul>
 </template>

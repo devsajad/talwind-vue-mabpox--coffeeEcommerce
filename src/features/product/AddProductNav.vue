@@ -21,8 +21,6 @@ watchEffect(async () => {
     if (!productApi) throw new Error('قهوه‌ای که دنبالشی پیدا نشد !')
 
     product.value = productApi
-    console.log(productApi)
-    console.log(product.value)
   } catch (err) {
     console.error(err)
     error.value = err.message
@@ -33,7 +31,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div class="space-y-1 flex w-full justify-between px-6 py-4">
+  <div v-if="product" class="space-y-1 flex w-full justify-between px-6 py-4">
     <div>
       <p class="text-gray-subtext text-sm">قیمت</p>
       <p
