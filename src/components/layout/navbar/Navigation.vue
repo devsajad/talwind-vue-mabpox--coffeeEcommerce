@@ -42,15 +42,15 @@ const cartCount = computed(() => {
       </RouterLink>
     </li>
     <li>
-      <RouterLink to="/order" class="flex gap-2 relative">
+      <RouterLink to="/cart" class="flex gap-2 relative">
         <Badge v-if="cartCount !== 0">
           {{ cartCount }}
         </Badge>
-        <ShopIcon :active="$route.path === '/order'" />
+        <ShopIcon :active="$route.path === '/cart'" />
         <p
           :class="[
             'text-gray-subtext hidden md:block',
-            { 'text-theme-primary font-bolds': $route.path === '/order' },
+            { 'text-theme-primary font-bolds': $route.path === '/cart' },
           ]"
         >
           سبدخرید

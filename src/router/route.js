@@ -1,13 +1,13 @@
 import AlertsView from '@/views/AlertsView.vue'
 import FavoritesView from '@/views/FavoritesView.vue'
 import HomeView from '@/views/HomeView.vue'
-import OrderView from '@/views/orderView.vue'
+import cartView from '@/views/cartView.vue'
 import PorductView from '@/views/PorductView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { path: '/', component: HomeView },
-  { path: '/order', component: OrderView },
+  { path: '/cart', component: cartView },
   { path: '/fav', component: FavoritesView },
   { path: '/alerts', component: AlertsView },
   { path: '/product/:id', component: PorductView },
