@@ -1,12 +1,12 @@
 <script setup>
 import Header from '@/components/layout/header/Header.vue'
-import ProductContainer from '@/features/product/ProductContainer.vue'
-import ProductDetails from '@/features/product/ProductDetails.vue'
+import ProductDetailsContainer from '@/features/products/productDetails/ProductDetailsContainer.vue'
+import ProductDetails from '@/features/products/productDetails/ProductDetails.vue'
 </script>
 
 <template>
-  <ProductContainer>
+  <ProductDetailsContainer>
     <Header />
     <ProductDetails />
-  </ProductContainer>
+  </ProductDetailsContainer>
 </template>

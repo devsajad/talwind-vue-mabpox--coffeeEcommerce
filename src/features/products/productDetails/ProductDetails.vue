@@ -54,7 +54,7 @@ watchEffect(async () => {
       </div>
       <!-- Descriptin section -->
       <div>
-        <p class="font-bold">توضیحات</p>
+        <p class="font-bold mb-1">توضیحات</p>
         <p class="text-gray-subtext">{{ product.description }}</p>
       </div>
 

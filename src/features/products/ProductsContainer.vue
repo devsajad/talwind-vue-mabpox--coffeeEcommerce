@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import Categories from '@/features/products/Categories.vue'
+import Categories from '@/features/products/productCategories/Categories.vue'
 import Products from '@/features/products/Products.vue'
 
 
