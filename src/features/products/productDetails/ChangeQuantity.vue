@@ -13,11 +13,17 @@ const itemCount = computed(() =>
 
 <template>
   <div class="flex items-center gap-4.5">
-    <button class="rounded-full border-1 p-1" @click="() => cartStore.addToCart(product)">
+    <button
+      class="rounded-full border-1 p-1"
+      @click.prevent.stop="() => cartStore.addToCart(product)"
+    >
       <Plus class="size-4 md:size-5" />
     </button>
-    <p>{{ itemCount.quantity}}</p>
-    <button class="rounded-full border-1 p-1" @click="() => cartStore.removeFromCart(product)">
+    <p>{{ itemCount.quantity }}</p>
+    <button
+      class="rounded-full border-1 p-1"
+      @click.prevent.stop="() => cartStore.removeFromCart(product)"
+    >
       <Minus class="size-4 md:size-5 rounded-full bg-white" />
     </button>
   </div>

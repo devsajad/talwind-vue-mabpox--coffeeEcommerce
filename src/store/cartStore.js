@@ -11,7 +11,7 @@ export const useCartStore = defineStore('cart', () => {
         items.value = JSON.parse(savedCart)
       } catch (e) {
         console.error('Error parsing cart from localStorage', e)
-        localStorage.removeItem('cartItems') // Clear corrupted data
+        localStorage.removeItem('cartItems') 
       }
     }
   }
