@@ -1,12 +1,19 @@
 <script setup>
 import { getProductById } from '@/services/api'
-import { ref, watchEffect } from 'vue'
+import { useCartStore } from '@/store/cartStore'
+import { computed, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
+import ChangeQuantity from './ChangeQuantity.vue'
 
 const route = useRoute()
 const product = ref({})
 const loading = ref(false)
 const error = ref('')
+const cartStore = useCartStore()
+
+const isAddedToCart = computed(() => {
+  return cartStore.$state.items.find((item) => item.id === product.value.id)
+})
 
 watchEffect(async () => {
   const productId = route.params?.id
@@ -28,6 +35,10 @@ watchEffect(async () => {
     loading.value = false
   }
 })
+
+function handleCartClick(product) {
+  cartStore.addToCart(product)
+}
 </script>
 
 <template>
@@ -45,11 +56,15 @@ watchEffect(async () => {
         {{ product.price }} تومان
       </p>
     </div>
+
     <button
+      v-if="!isAddedToCart"
+      @click="() => handleCartClick(product)"
       class="bg-theme-primary text-white py-4 px-15 rounded-2xl disabled:cursor-not-allowed disabled:opacity-50"
       :disabled="!product.on_sale"
     >
       {{ product.on_sale ? 'افزودن به سبد' : 'ناموجود !' }}
     </button>
+    <ChangeQuantity v-else :product="product" />
   </div>
 </template>

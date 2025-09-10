@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import Navbar from './components/layout/navbar/Navbar.vue'
-import { useCartStore } from './store/cart'
+import { useCartStore } from './store/cartStore'
 
 const cartStore = useCartStore()
 

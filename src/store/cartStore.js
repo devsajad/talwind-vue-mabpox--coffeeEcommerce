@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 
 export const useCartStore = defineStore('cart', () => {
-  // product details and quantity
   const items = ref([])
 
   function init() {
@@ -16,17 +15,25 @@ export const useCartStore = defineStore('cart', () => {
       }
     }
   }
-
   function addToCart(product) {
     const currentProduct = items.value.find((item) => item.id === product.id)
-    if (!currentProduct) return items.value.push({ ...product, quantity: 1 })
-
-    return currentProduct.quantity++
+    if (currentProduct) {
+      currentProduct.quantity++
+    } else {
+      items.value.push({ ...product, quantity: 1 })
+    }
   }
-
   function removeFromCart(product) {
     const currentProduct = items.value.find((item) => item.id === product.id)
-    if (currentProduct) return currentProduct.quantity--
+    if (!currentProduct) return
+
+    const isLastItem = currentProduct.quantity === 1
+
+    if (isLastItem) {
+      clearFromCart(product.id)
+    } else {
+      currentProduct.quantity--
+    }
   }
 
   function clearFromCart(productId) {

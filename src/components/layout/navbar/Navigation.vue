@@ -3,6 +3,14 @@ import AlertIcon from '@/components/icons/AlertIcon.vue'
 import HeartIcon from '@/components/icons/HeartIcon.vue'
 import HomeIcon from '@/components/icons/HomeIcon.vue'
 import ShopIcon from '@/components/icons/ShopIcon.vue'
+import Badge from '@/components/ui/Badge.vue'
+import { useCartStore } from '@/store/cartStore'
+import { computed } from 'vue'
+
+const cartStore = useCartStore()
+const cartCount = computed(() => {
+  return cartStore.cartItemCount
+})
 </script>
 
 <template>
@@ -34,7 +42,10 @@ import ShopIcon from '@/components/icons/ShopIcon.vue'
       </RouterLink>
     </li>
     <li>
-      <RouterLink to="/order" class="flex gap-2">
+      <RouterLink to="/order" class="flex gap-2 relative">
+        <Badge v-if="cartCount !== 0">
+          {{ cartCount }}
+        </Badge>
         <ShopIcon :active="$route.path === '/order'" />
         <p
           :class="[
