@@ -60,7 +60,7 @@ function handleCartClick(product) {
     <button
       v-if="!isAddedToCart"
       @click="() => handleCartClick(product)"
-      class="bg-theme-primary text-white py-4 px-15 rounded-2xl disabled:cursor-not-allowed disabled:opacity-50"
+      class="py-4 px-15 btn-primary"
       :disabled="!product.on_sale"
     >
       {{ product.on_sale ? 'افزودن به سبد' : 'ناموجود !' }}

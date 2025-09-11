@@ -33,7 +33,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <main v-if="product" class="md:flex gap-12">
+  <main v-if="product" class="md:flex gap-12 pb-40">
     <div class="w-full h-50.5 md:h-80 rounded-xl relative overflow-hidden mb-4">
       <img
         :src="product.image_url"

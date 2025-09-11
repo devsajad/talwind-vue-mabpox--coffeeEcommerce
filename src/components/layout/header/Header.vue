@@ -3,6 +3,7 @@ import BackButton from '@/components/ui/BackButton.vue'
 
 defineProps({
   secButtonComp: Object,
+  title: String,
 })
 </script>
 
