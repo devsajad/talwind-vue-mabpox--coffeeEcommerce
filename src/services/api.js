@@ -65,3 +65,27 @@ export async function createProfile(userId, profileData) {
   })
   if (error) throw error
 }
+
+export async function addAddress(addressData) {
+  const { data, error } = await supabase.from('addresses').insert(addressData).select().single()
+
+  if (error) {
+    console.error('Error adding address:', error)
+    throw error
+  }
+  return data
+}
+
+export async function getAddresses() {
+  const { data, error } = await supabase
+    .from('addresses')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching addresses:', error)
+    throw error
+  }
+
+  return data
+}
