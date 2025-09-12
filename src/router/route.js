@@ -3,8 +3,9 @@ import AlertsView from '@/views/AlertsView.vue'
 import cartView from '@/views/cartView.vue'
 import FavoritesView from '@/views/FavoritesView.vue'
 import HomeView from '@/views/HomeView.vue'
+import LocationView from '@/views/LocationView.vue'
 import LoginView from '@/views/LoginView.vue'
-import OrderView from '@/views/orderView.vue'
+import OrderView from '@/views/OrderView.vue'
 import PorductView from '@/views/PorductView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -18,6 +19,7 @@ const routes = [
   { path: '/signup', component: SignUpView },
   { path: '/product/:id', component: PorductView },
   { path: '/order', component: OrderView, meta: { requiresAuth: true } },
+  { path: '/location', component: LocationView, meta: { requiresAuth: false } },
 ]
 
 const router = createRouter({

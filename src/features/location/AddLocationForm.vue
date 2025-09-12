@@ -31,42 +31,8 @@ const lat = ref(0)
 const lng = ref(0)
 let map = null
 
-onMounted(() => {
-  // Mapbox initialization logic will go in a watcher
-  // to ensure it runs when the modal becomes visible.
-})
 
-watch(
-  () => props.open,
-  (isOpen) => {
-    if (isOpen) {
-      nextTick(() => {
-        initializeMap()
-      })
-    }
-  },
-)
 
-function initializeMap() {
-  if (map || !mapContainer.value) return // Don't initialize twice
-
-  mapboxgl.accessToken =
-    'pk.eyJ1Ijoic2FqYWR6YXJlIiwiYSI6ImNsN2QzMHduaTFqaHAzdm5nNmtlYnB0dmcifQ.pp_81OMy1gIPbCVZOl_bVA'
-
-  map = new mapboxgl.Map({
-    container: mapContainer.value,
-    style: 'mapbox://styles/mapbox/streets-v12',
-    center: [51.389, 35.6892],
-    zoom: 12,
-  })
-
-  // When the map moves, update our lat/lng refs
-  map.on('move', () => {
-    const center = map.getCenter()
-    lat.value = center.lat
-    lng.value = center.lng
-  })
-}
 
 async function handleSaveAddress() {
   if (!address.value.trim() || !authStore.isLoggedIn) {
@@ -82,8 +48,7 @@ async function handleSaveAddress() {
       lng: parseFloat(lng.value),
     }
     await addAddress(newAddress)
-    emit('address-saved')
-    emit('update:open', false)
+
   } catch (error) {
     alert('Failed to save address.')
     console.error(error)

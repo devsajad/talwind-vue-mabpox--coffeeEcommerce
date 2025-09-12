@@ -18,7 +18,7 @@ async function fetchAddresses() {
 }
 
 function handleClickAddAddress() {
-  router.push('/address')
+  router.push('/location')
 }
 
 onMounted(() => {

@@ -174,3 +174,9 @@
     @apply bg-theme-primary text-white rounded-2xl disabled:cursor-not-allowed disabled:opacity-50;
   }
 }
+
+.map-container .mapboxgl-ctrl-logo,
+.map-container .mapboxgl-compact,
+.mapboxgl-ctrl-attrib-inner {
+  @apply hidden!;
+}
