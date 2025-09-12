@@ -42,11 +42,6 @@ export async function searchProductsByName(searchTerm, { signal }) {
   return data
 }
 
-/**
- * Fetches a single product by its ID.
- * @param {string | number} productId - The ID of the product to fetch.
- * @returns {Promise<Object>} A promise that resolves to the product object.
- */
 export async function getProductById(productId) {
   const { data, error } = await supabase
     .from('products')
@@ -60,4 +55,13 @@ export async function getProductById(productId) {
   }
 
   return data
+}
+
+export async function createProfile(userId, profileData) {
+  const { error } = await supabase.from('profiles').insert({
+    id: userId,
+    full_name: profileData.full_name,
+    phone_number: profileData.phone_number,
+  })
+  if (error) throw error
 }

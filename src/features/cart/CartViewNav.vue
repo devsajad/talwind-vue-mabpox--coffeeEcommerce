@@ -2,16 +2,22 @@
 import ArrowBottomIcon from '@/components/icons/ArrowBottomIcon.vue'
 import WalletIcon from '@/components/icons/WalletIcon.vue'
 import { useCartStore } from '@/store/cartStore'
+import { useRouter } from 'vue-router'
 
 defineProps({
   isShowCartNav: Boolean,
 })
 
 const cartStore = useCartStore()
+const router = useRouter()
 const emit = defineEmits(['close'])
 
 function handleCloseNav() {
   emit('close')
+}
+
+function handleOrderClick() {
+  router.push('/order')
 }
 </script>
 
@@ -35,7 +41,9 @@ function handleCloseNav() {
       </button>
     </div>
     <div class="text-center">
-      <button class="btn-primary w-full md:w-sm py-4 mx-auto">تایید سفارش</button>
+      <button @click="handleOrderClick" class="btn-primary w-full md:w-sm py-4 mx-auto">
+        تایید سفارش
+      </button>
     </div>
   </div>
 </template>

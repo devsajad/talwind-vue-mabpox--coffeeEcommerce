@@ -10,13 +10,13 @@ const product = ref({})
 const loading = ref(false)
 const error = ref('')
 const cartStore = useCartStore()
+const productId = route.params?.id
 
 const isAddedToCart = computed(() => {
   return cartStore.$state.items.find((item) => item.id === product.value.id)
 })
 
 watchEffect(async () => {
-  const productId = route.params?.id
   if (!productId) return
 
   try {

@@ -4,14 +4,16 @@ import Seprator from '@/components/ui/Seprator.vue'
 import { getProductById } from '@/services/api'
 import { ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
+import ProductSize from './ProductSize.vue'
 
 const route = useRoute()
 const product = ref({})
 const loading = ref(false)
 const error = ref('')
 
+const productId = route.params?.id
+
 watchEffect(async () => {
-  const productId = route.params?.id
   if (!productId) return
 
   try {
@@ -59,22 +61,7 @@ watchEffect(async () => {
       </div>
 
       <!-- size section -->
-      <div>
-        <p class="font-bold mb-4">سایز</p>
-        <div class="flex gap-4 justify-center">
-          <button class="px-11 py-2.5 bg-white rounded-xl ring-1 ring-theme-foreground-lighter">
-            S
-          </button>
-          <button
-            class="px-11 py-2.5 rounded-xl bg-theme-primary-lighter ring-1 ring-theme-primary text-theme-primary"
-          >
-            M
-          </button>
-          <button class="px-11 py-2.5 bg-white rounded-xl ring-1 ring-theme-foreground-lighter">
-            L
-          </button>
-        </div>
-      </div>
+      <ProductSize />
     </div>
   </main>
 </template>

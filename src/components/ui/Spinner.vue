@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible"
-  >
+  <div>
     <svg
       class="text-gray-300 animate-spin"
       viewBox="0 0 64 64"
@@ -23,9 +21,8 @@
         stroke-width="5"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="text-gray-900"
+        class="text-theme-primary"
       ></path>
     </svg>
   </div>
 </template>
-

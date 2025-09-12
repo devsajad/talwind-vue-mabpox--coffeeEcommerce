@@ -28,7 +28,7 @@ watch(
       'duration-500 fixed bottom-0 w-dvw bg-white rounded-t-4xl shadow-2xl md:max-w-5xl md:right-1/2 md:translate-x-1/2': true,
     }"
   >
-    <Navigation v-if="route.path === '/'" />
+    <Navigation v-if="route.path === '/' || route.path === '/login' || route.path === '/signup'" />
     <CartViewNav
       v-else-if="route.path === '/cart'"
       @close="handleCloseCartNav"
