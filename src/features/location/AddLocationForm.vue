@@ -31,9 +31,6 @@ const lat = ref(0)
 const lng = ref(0)
 let map = null
 
-
-
-
 async function handleSaveAddress() {
   if (!address.value.trim() || !authStore.isLoggedIn) {
     alert('Please enter a valid address.')
@@ -55,7 +52,6 @@ async function handleSaveAddress() {
   }
 }
 
-// Clean up the map instance when the component is destroyed
 onUnmounted(() => {
   if (map) {
     map.remove()

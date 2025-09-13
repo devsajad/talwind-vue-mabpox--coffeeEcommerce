@@ -1,41 +1,38 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
 import mapboxgl from 'mapbox-gl'
+import { useMapStore } from './mapStore'
+import { MAPBOX_KEY } from '@/constants'
 
 const mapContainer = ref(null)
-let map = null
-const lat = ref(0)
-const lng = ref(0)
+const mapStore = useMapStore()
 
 onMounted(() => {
-  if (map || !mapContainer.value) return
+  if (mapStore.map || !mapContainer.value) return
 
-  mapboxgl.accessToken =
-    'pk.eyJ1Ijoic2FqYWR6YXJlIiwiYSI6ImNsN2QzMHduaTFqaHAzdm5nNmtlYnB0dmcifQ.pp_81OMy1gIPbCVZOl_bVA'
-
-  map = new mapboxgl.Map({
+  mapboxgl.accessToken = MAPBOX_KEY
+  const map = new mapboxgl.Map({
     container: mapContainer.value,
     style: 'mapbox://styles/mapbox/streets-v12',
     center: [51.389, 35.6892],
     zoom: 12,
   })
+  mapStore.setMap(map)
 
   map.on('move', () => {
     const center = map.getCenter()
-    lat.value = center.lat
-    lng.value = center.lng
+    mapStore.lat = center.lat
+    mapStore.lng = center.lng
   })
 })
 
 onUnmounted(() => {
-  if (map) {
-    map.remove()
-  }
+  mapStore.removeMap()
 })
 </script>
 
 <template>
-  <div ref="mapContainer" class="w-full h-70 rounded-xl overflow-hidden map-container relative">
+  <div class="w-full h-70 rounded-xl overflow-hidden map-container relative">
     <div ref="mapContainer" class="w-full h-full"></div>
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
       <img src="/marker-icon.png" alt="Map Marker" class="w-5 z-1000" />
