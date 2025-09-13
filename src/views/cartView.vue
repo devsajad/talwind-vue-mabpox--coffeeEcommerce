@@ -8,7 +8,7 @@ import LocationCart from '@/features/cart/LocationCart.vue'
 </script>
 
 <template>
-  <Header> سفارشات </Header>
+  <Header class="px-4 max-w-5xl mx-auto"> سفارشات </Header>
   <CartContainer>
     <LocationCart />
 

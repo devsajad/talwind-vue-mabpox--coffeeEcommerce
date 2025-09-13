@@ -32,6 +32,9 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <p class="text-center text-sm text-gray-subtext mb-2">
+    لطفا نشانگر را جابجا و در محل مورد نظر خود رها کنید
+  </p>
   <div class="w-full h-70 rounded-xl overflow-hidden map-container relative">
     <div ref="mapContainer" class="w-full h-full"></div>
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">

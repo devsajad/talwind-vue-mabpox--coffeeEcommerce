@@ -8,7 +8,7 @@ const cartStore = useCartStore()
 <template>
   <div
     v-if="cartStore.$state.items.length === 0"
-    class="flex items-center justify-center bg-theme-primary text-white py-2 px-4 rounded-lg gap-2 max-w-xs mx-auto"
+    class=" flex items-center justify-center bg-theme-primary text-white py-2 px-4 rounded-lg gap-2 max-w-xs mx-auto"
   >
     <p>هیچ محصولی در سبد شما نیست !</p>
     <ShoppingCartIcon class="size-5" />

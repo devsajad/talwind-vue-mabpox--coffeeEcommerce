@@ -7,6 +7,7 @@ import SelectTrigger from '@/components/ui/select/SelectTrigger.vue'
 import SelectValue from '@/components/ui/select/SelectValue.vue'
 import { getAddresses } from '@/services/api'
 import { useAuthstore } from '@/store/authStore'
+import { useCartStore } from '@/store/cartStore'
 import { PlusCircleIcon } from 'lucide-vue-next'
 import { ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
@@ -14,6 +15,7 @@ import { useRouter } from 'vue-router'
 const addresses = ref([])
 const router = useRouter()
 const authStore = useAuthstore()
+const cartStore = useCartStore()
 
 watchEffect(async () => {
   if (authStore.user) {
@@ -24,12 +26,19 @@ watchEffect(async () => {
 function handleClickAddAddress() {
   router.push('/location')
 }
+
+function handleSelectAddress(selectedId) {
+  const selected = addresses.value.find((addr) => addr.id === selectedId)
+  if (selected) {
+    cartStore.setAddress(selected.address)
+  }
+}
 </script>
 
 <template>
   <div>
     <p v-if="!$slots.default" class="text-theme-foreground-list">موقعیت مکانی</p>
-    <Select dir="rtl">
+    <Select dir="rtl" @update:modelValue="handleSelectAddress">
       <SelectTrigger
         :isShowIcon="!$slots.default"
         class="shadow-none border-none! p-0 justify-start focus-visible:ring-0"
@@ -37,7 +46,7 @@ function handleClickAddAddress() {
         <SelectValue
           v-if="!$slots.default"
           class="text-gray-subtext"
-          placeholder="یک آدرس انتخاب کنید"
+          :placeholder="cartStore.selectedAddress || 'یک آدرس انتخاب کنید'"
         />
         <slot v-else />
       </SelectTrigger>
