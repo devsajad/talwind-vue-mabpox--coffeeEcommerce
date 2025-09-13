@@ -1,11 +1,23 @@
-<script setup></script>
+<script setup>
+import { onMounted } from 'vue'
+import Navbar from './components/layout/navbar/Navbar.vue'
+import { useCartStore } from './store/cartStore'
+import { useAuthstore } from './store/authStore'
+
+const cartStore = useCartStore()
+const authStore = useAuthstore()
+
+onMounted(() => {
+  cartStore.init()
+  authStore.init()
+})
+</script>
 
 <template>
-  <h1 class="text-red-200">You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="relative">
+    <RouterView />
+    <Navbar />
+  </div>
 </template>
 
 <style scoped></style>
