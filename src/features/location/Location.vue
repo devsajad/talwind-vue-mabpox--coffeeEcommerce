@@ -6,24 +6,24 @@ import SelectItem from '@/components/ui/select/SelectItem.vue'
 import SelectTrigger from '@/components/ui/select/SelectTrigger.vue'
 import SelectValue from '@/components/ui/select/SelectValue.vue'
 import { getAddresses } from '@/services/api'
+import { useAuthstore } from '@/store/authStore'
 import { PlusCircleIcon } from 'lucide-vue-next'
-import { onMounted, ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
 const addresses = ref([])
 const router = useRouter()
+const authStore = useAuthstore()
 
-async function fetchAddresses() {
-  addresses.value = await getAddresses()
-}
+watchEffect(async () => {
+  if (authStore.user) {
+    addresses.value = await getAddresses(authStore.user.id)
+  }
+})
 
 function handleClickAddAddress() {
   router.push('/location')
 }
-
-onMounted(() => {
-  fetchAddresses()
-})
 </script>
 
 <template>
@@ -36,7 +36,7 @@ onMounted(() => {
       >
         <SelectValue
           v-if="!$slots.default"
-          class="text-gray-subtext max-w-[220px]"
+          class="text-gray-subtext"
           placeholder="یک آدرس انتخاب کنید"
         />
         <slot v-else />

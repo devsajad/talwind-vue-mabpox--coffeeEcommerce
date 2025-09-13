@@ -17,7 +17,6 @@ export const useAuthstore = defineStore('auth', () => {
   const isLoggedIn = computed(() => !!user.value)
 
   async function signUp(email, password, name, phoneNumber) {
-    // 1. Sign up the user with Supabase Auth
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
       password,

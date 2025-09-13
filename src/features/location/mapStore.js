@@ -1,11 +1,11 @@
-// In mapStore.js
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useMapStore = defineStore('map', () => {
   const lat = ref(null)
   const lng = ref(null)
-  let map = null // <-- plain variable, not ref
+  const address = ref('')
+  let map = null
 
   function setMap(instance) {
     map = instance
@@ -24,5 +24,5 @@ export const useMapStore = defineStore('map', () => {
     lng.value = newLng
   }
 
-  return { lat, lng, setMap, getMap, setCoords, removeMap }
+  return { lat, lng, address, setMap, getMap, setCoords, removeMap }
 })

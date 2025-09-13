@@ -19,7 +19,7 @@ const routes = [
   { path: '/signup', component: SignUpView },
   { path: '/product/:id', component: PorductView },
   { path: '/order', component: OrderView, meta: { requiresAuth: true } },
-  { path: '/location', component: LocationView, meta: { requiresAuth: false } },
+  { path: '/location', component: LocationView, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({

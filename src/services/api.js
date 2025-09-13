@@ -66,6 +66,10 @@ export async function createProfile(userId, profileData) {
   if (error) throw error
 }
 
+/**
+ * Adds a new address for the currently logged-in user.
+ * @param {object} addressData - { address, lat, lng, user_id }
+ */
 export async function addAddress(addressData) {
   const { data, error } = await supabase.from('addresses').insert(addressData).select().single()
 
