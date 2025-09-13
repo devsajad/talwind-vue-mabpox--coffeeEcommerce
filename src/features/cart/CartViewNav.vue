@@ -22,7 +22,7 @@ function handleOrderClick() {
 </script>
 
 <template>
-  <div :class="'py-4 px-6 md:flex md:justify-between'">
+  <div v-if="cartStore.$state.items.length !== 0" :class="'py-4 px-6 md:flex md:justify-between'">
     <div class="flex items-center gap-4 mb-2">
       <WalletIcon />
       <div>
