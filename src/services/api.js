@@ -1,5 +1,7 @@
+import { MAPBOX_KEY } from '@/constants'
 import { supabase } from '@/services/supabase'
 
+// SUPABASE APIS
 export async function getCategories() {
   const { data, error } = await supabase.from('categories').select('*')
 
@@ -153,4 +155,26 @@ export async function getOrderById(orderId) {
   }
 
   return data
+}
+
+// MAPBOX APIS
+export async function getDirections(startCoords, endCoords) {
+  const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${startCoords.lng},${startCoords.lat};${endCoords.lng},${endCoords.lat}?geometries=geojson&access_token=${MAPBOX_KEY}`
+
+  try {
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error('Failed to fetch directions from Mapbox.')
+    }
+    const data = await response.json()
+
+    const route = data.routes[0]
+    return {
+      geometry: route.geometry,
+      duration: route.duration,
+    }
+  } catch (error) {
+    console.error('Error fetching Mapbox directions:', error)
+    throw error
+  }
 }
