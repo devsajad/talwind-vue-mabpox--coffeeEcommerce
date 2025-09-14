@@ -1,25 +1,45 @@
 import { useAuthstore } from '@/store/authStore'
-import AlertsView from '@/views/AlertsView.vue'
-import cartView from '@/views/cartView.vue'
-import FavoritesView from '@/views/FavoritesView.vue'
-import HomeView from '@/views/HomeView.vue'
-import LocationView from '@/views/LocationView.vue'
-import LoginView from '@/views/LoginView.vue'
-import OrderView from '@/views/OrderView.vue'
-import PorductView from '@/views/PorductView.vue'
-import SignUpView from '@/views/SignUpView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
-  { path: '/', component: HomeView },
-  { path: '/cart', component: cartView },
-  { path: '/login', component: LoginView },
-  { path: '/fav', component: FavoritesView },
-  { path: '/alerts', component: AlertsView },
-  { path: '/signup', component: SignUpView },
-  { path: '/product/:id', component: PorductView },
-  { path: '/order/:id', component: OrderView, meta: { requiresAuth: false } },
-  { path: '/location', component: LocationView, meta: { requiresAuth: true } },
+  {
+    path: '/',
+    component: () => import('@/views/HomeView.vue'),
+  },
+  {
+    path: '/cart',
+    component: () => import('@/views/cartView.vue'),
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/LoginView.vue'),
+  },
+  {
+    path: '/fav',
+    component: () => import('@/views/FavoritesView.vue'),
+  },
+  {
+    path: '/alerts',
+    component: () => import('@/views/AlertsView.vue'),
+  },
+  {
+    path: '/signup',
+    component: () => import('@/views/SignUpView.vue'),
+  },
+  {
+    path: '/product/:id',
+    component: () => import('@/views/PorductView.vue'),
+  },
+  {
+    path: '/order/:id',
+    component: () => import('@/views/OrderView.vue'),
+    meta: { requiresAuth: false },
+  },
+  {
+    path: '/location',
+    component: () => import('@/views/LocationView.vue'),
+    meta: { requiresAuth: true },
+  },
 ]
 
 const router = createRouter({
