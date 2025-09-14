@@ -10,8 +10,8 @@ const cartStore = useCartStore()
 <template>
   <div class="mb-6">
     <p class="font-bold mb-1">آدرس تحویل</p>
-    <p v-if="cartStore.selectedAddress.address" class="text-gray-subtext text-sm mb-4">
-      {{ cartStore.selectedAddress.address }}
+    <p v-if="cartStore?.selectedAddress?.address" class="text-gray-subtext text-sm mb-4">
+      {{ cartStore?.selectedAddress?.address }}
     </p>
     <p v-else class="text-red-600 text-sm mb-4 animate-pulse">لطفا یک آدرس انتخاب کنید</p>
     <div class="flex gap-2">
