@@ -25,7 +25,7 @@ function handleCloseNav() {
 
 async function handlePlaceOrder() {
   if (!cartStore.selectedAddress) {
-    alert('Please select a delivery address.')
+    alert('لطفا آدرس خود را انتخاب کنید')
     return
   }
   if (cartStore.items.length === 0) {
