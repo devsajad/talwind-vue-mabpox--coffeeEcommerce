@@ -18,7 +18,7 @@ const routes = [
   { path: '/alerts', component: AlertsView },
   { path: '/signup', component: SignUpView },
   { path: '/product/:id', component: PorductView },
-  { path: '/order', component: OrderView, meta: { requiresAuth: true } },
+  { path: '/order/:id', component: OrderView, meta: { requiresAuth: false } },
   { path: '/location', component: LocationView, meta: { requiresAuth: true } },
 ]
 
