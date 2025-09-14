@@ -20,7 +20,6 @@ const cartStore = useCartStore()
 watchEffect(async () => {
   if (authStore.user) {
     addresses.value = await getAddresses(authStore.user.id)
-    console.log(addresses)
   }
 })
 
@@ -30,7 +29,6 @@ function handleClickAddAddress() {
 
 function handleSelectAddress(selectedId) {
   const selected = addresses.value.find((addr) => addr.id === selectedId)
-  console.log(selected)
   if (selected) {
     cartStore.setAddress(selected)
   }
