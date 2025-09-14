@@ -107,3 +107,50 @@ export async function placeOrder(orderData) {
   }
   return data
 }
+
+export async function getUserOrders() {
+  const { data, error } = await supabase
+    .from('orders')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching user orders:', error)
+    throw error
+  }
+  return data
+}
+
+export async function getOrderById(orderId) {
+  const { data, error } = await supabase
+    .from('orders')
+    .select(
+      `
+      *,
+      profiles (
+        full_name,
+        phone_number
+      ),
+      addresses (
+        address,
+        lat,
+        lng
+      ),
+      order_items (
+        *,
+        products (
+          *
+        )
+      )
+    `,
+    )
+    .eq('id', orderId)
+    .single()
+
+  if (error) {
+    console.error('Error fetching order:', error)
+    throw error
+  }
+
+  return data
+}

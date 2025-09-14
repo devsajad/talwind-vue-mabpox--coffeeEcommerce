@@ -2,8 +2,14 @@
 import ArrowBottomIcon from '@/components/icons/ArrowBottomIcon.vue'
 import CallIcon from '@/components/icons/CallIcon.vue'
 import DeliveryIcon from '@/components/icons/deliveryIcon.vue'
+import { useOrderStore } from '@/store/orderStore'
+import { computed } from 'vue'
 
 const emit = defineEmits(['close'])
+const orderStore = useOrderStore()
+const userName = computed(() => {
+  return orderStore.currentOrder?.profiles?.full_name
+})
 
 defineProps({
   isShowCartNav: Boolean,
@@ -30,7 +36,7 @@ function handleCloseNav() {
       <h2 class="font-bold">10 دقیقه زمان تحویل</h2>
       <p class="text-sm text-gray-subtext">
         تحویل به
-        <span class="text-black font-bold">سجاد زارع</span>
+        <span class="text-black font-bold">{{ userName }}</span>
       </p>
     </header>
 
