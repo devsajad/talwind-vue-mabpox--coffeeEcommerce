@@ -8,8 +8,8 @@ const cartStore = useCartStore()
 const authStore = useAuthstore()
 
 onMounted(() => {
-  cartStore.init()
   authStore.init()
+  cartStore.init()
 })
 </script>
 

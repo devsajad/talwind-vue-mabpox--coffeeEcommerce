@@ -6,38 +6,47 @@ import SelectItem from '@/components/ui/select/SelectItem.vue'
 import SelectTrigger from '@/components/ui/select/SelectTrigger.vue'
 import SelectValue from '@/components/ui/select/SelectValue.vue'
 import { getAddresses } from '@/services/api'
+import { useAuthstore } from '@/store/authStore'
+import { useCartStore } from '@/store/cartStore'
 import { PlusCircleIcon } from 'lucide-vue-next'
-import { onMounted, ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
 const addresses = ref([])
 const router = useRouter()
+const authStore = useAuthstore()
+const cartStore = useCartStore()
 
-async function fetchAddresses() {
-  addresses.value = await getAddresses()
-}
+watchEffect(async () => {
+  if (authStore.user) {
+    addresses.value = await getAddresses(authStore.user.id)
+  }
+})
 
 function handleClickAddAddress() {
   router.push('/location')
 }
 
-onMounted(() => {
-  fetchAddresses()
-})
+function handleSelectAddress(selectedId) {
+  const selected = addresses.value.find((addr) => addr.id === selectedId)
+  if (selected) {
+    cartStore.setAddress(selected)
+  }
+}
 </script>
 
 <template>
   <div>
     <p v-if="!$slots.default" class="text-theme-foreground-list">موقعیت مکانی</p>
-    <Select dir="rtl">
+    <Select dir="rtl" @update:modelValue="handleSelectAddress">
       <SelectTrigger
         :isShowIcon="!$slots.default"
         class="shadow-none border-none! p-0 justify-start focus-visible:ring-0"
       >
         <SelectValue
           v-if="!$slots.default"
-          class="text-gray-subtext max-w-[220px]"
-          placeholder="یک آدرس انتخاب کنید"
+          class="text-gray-subtext"
+          :placeholder="cartStore?.selectedAddress?.address || 'یک آدرس انتخاب کنید'"
         />
         <slot v-else />
       </SelectTrigger>

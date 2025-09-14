@@ -3,6 +3,11 @@ import { computed, ref, watch } from 'vue'
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref([])
+  const selectedAddress = ref(null)
+
+  function setAddress(address) {
+    selectedAddress.value = address
+  }
 
   function init() {
     const savedCart = localStorage.getItem('cartItems')
@@ -11,7 +16,7 @@ export const useCartStore = defineStore('cart', () => {
         items.value = JSON.parse(savedCart)
       } catch (e) {
         console.error('Error parsing cart from localStorage', e)
-        localStorage.removeItem('cartItems') 
+        localStorage.removeItem('cartItems')
       }
     }
   }
@@ -69,5 +74,7 @@ export const useCartStore = defineStore('cart', () => {
     cartItemCount,
     cartTotalPrice,
     clearFromCart,
+    selectedAddress,
+    setAddress,
   }
 })

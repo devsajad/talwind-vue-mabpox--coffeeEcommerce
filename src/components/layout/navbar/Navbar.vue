@@ -4,6 +4,7 @@ import ProductDetailsNav from '@/features/products/productDetails/ProductDetails
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Navigation from './Navigation.vue'
+import OrderNav from '@/features/order/orderNav.vue'
 
 const route = useRoute()
 const isShowCartNav = ref(true)
@@ -24,16 +25,22 @@ watch(
   <div
     :class="{
       'translate-y-0': isShowCartNav,
-      'translate-y-19': !isShowCartNav,
+      'translate-y-48 md:translate-y-30': !isShowCartNav && route.path.startsWith('/order'),
+      'translate-y-19': !isShowCartNav && route.path === '/cart',
       'duration-500 fixed bottom-0 w-dvw bg-white rounded-t-4xl shadow-2xl md:max-w-5xl md:right-1/2 md:translate-x-1/2': true,
     }"
   >
-    <Navigation v-if="route.path === '/' || route.path === '/login' || route.path === '/signup'"  />
+    <Navigation v-if="route.path === '/' || route.path === '/login' || route.path === '/signup'" />
     <CartViewNav
       v-else-if="route.path === '/cart'"
       @close="handleCloseCartNav"
       :isShowCartNav="isShowCartNav"
     />
     <ProductDetailsNav v-else-if="route.path.startsWith('/product')" />
+    <OrderNav
+      v-else-if="route.path.startsWith('/order')"
+      @close="handleCloseCartNav"
+      :isShowCartNav="isShowCartNav"
+    />
   </div>
 </template>

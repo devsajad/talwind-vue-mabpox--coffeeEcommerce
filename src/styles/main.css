@@ -178,5 +178,14 @@
 .map-container .mapboxgl-ctrl-logo,
 .map-container .mapboxgl-compact,
 .mapboxgl-ctrl-attrib-inner {
-  @apply hidden!;
+  display: hidden !important;
+}
+
+.store-marker {
+  background-image: url('/Driver.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
 }
