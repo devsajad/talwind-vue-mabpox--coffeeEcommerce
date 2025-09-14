@@ -93,3 +93,17 @@ export async function getAddresses() {
 
   return data
 }
+
+export async function placeOrder(orderData) {
+  const { data, error } = await supabase.rpc('place_order', {
+    user_id_param: orderData.userId,
+    address_id_param: orderData.addressId,
+    cart_items: orderData.cartItems,
+  })
+
+  if (error) {
+    console.error('Error placing order:', error)
+    throw error
+  }
+  return data
+}

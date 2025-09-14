@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue'
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref([])
-  const selectedAddress = ref()
+  const selectedAddress = ref(null)
 
   function setAddress(address) {
     selectedAddress.value = address

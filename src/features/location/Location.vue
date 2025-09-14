@@ -20,6 +20,7 @@ const cartStore = useCartStore()
 watchEffect(async () => {
   if (authStore.user) {
     addresses.value = await getAddresses(authStore.user.id)
+    console.log(addresses)
   }
 })
 
@@ -29,8 +30,9 @@ function handleClickAddAddress() {
 
 function handleSelectAddress(selectedId) {
   const selected = addresses.value.find((addr) => addr.id === selectedId)
+  console.log(selected)
   if (selected) {
-    cartStore.setAddress(selected.address)
+    cartStore.setAddress(selected)
   }
 }
 </script>
@@ -46,7 +48,7 @@ function handleSelectAddress(selectedId) {
         <SelectValue
           v-if="!$slots.default"
           class="text-gray-subtext"
-          :placeholder="cartStore.selectedAddress || 'یک آدرس انتخاب کنید'"
+          :placeholder="cartStore?.selectedAddress?.address || 'یک آدرس انتخاب کنید'"
         />
         <slot v-else />
       </SelectTrigger>
